@@ -4,13 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Login Fail</title>
 </head>
 <body>
-	<form action = "/helloMVC/doLogin" method = "get">
-		Customer ID(id001, id002, id003, id004, id005):
-		<input type="text" name="customerID"><br>
-		<input type="submit" value="press">
-	</form>
+<h2>Login Failed : ${id } is not present.</h2>
+<p><a href = "/helloMVC/index.jsp"> go to homepage.</a></p>
 </body>
 </html>

@@ -6,27 +6,51 @@ import java.util.Map;
 import model.Customer;
 
 public class CustomerService {
-	
+
 	private Map<String, Customer> customers;
 
-	public CustomerService() {
+	private static final CustomerService instance = new CustomerService();
+
+	private CustomerService() {
 		customers = new HashMap<String, Customer>();
-		
-		addCustomer(new Customer("id001", "Alive", "alice.hansung.ac.kr"));
-		addCustomer(new Customer("id002", "Bob", "bob.hansung.ac.kr"));
-		addCustomer(new Customer("id003", "Charlie", "charlie.hansung.ac.kr"));
-		addCustomer(new Customer("id004", "David", "david.hansung.ac.kr"));
-		addCustomer(new Customer("id005", "Trudy", "trudy.hansung.ac.kr"));
 	}
-	
+
+	public static CustomerService getInstance() {
+		return instance;
+	}
+
 	public void addCustomer(Customer customer) {
 		customers.put(customer.getId(), customer);
 	}
-	
+
 	public Customer findCustomer(String id) {
-		if(id != null)
+		if (id != null)
 			return (customers.get(id.toLowerCase()));
 		else
 			return null;
 	}
+
+	/*
+	 * public Customer login(String id, String password) { if (customers.get(id)
+	 * != null && findCustomer(id).getPassword().equals(password)) { return
+	 * findCustomer(id); } return null; }
+	 */
+
+	public Customer login(String id, String password) {
+		Customer customer = customers.get(id);
+
+		if (customer != null && password.equals(customer.getPassword()))
+			return customer;
+		else
+			return null;
+	}
+
+	public Customer register(String id, String password, String name, String gender, String email) {
+		// TODO Auto-generated method stub
+		if (id != null && password != null && name != null && gender != null && email != null) {
+			return (new Customer(id, password, name, gender, email));
+		}
+		return null;
+	}
+
 }

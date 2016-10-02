@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Login Success</title>
 </head>
 <body>
-This is a help page.
+<h2>${customer.name } logged in successfully.</h2>
+<p><a href = "/helloMVC/index.jsp"> go to home page</a></p>
 </body>
 </html>

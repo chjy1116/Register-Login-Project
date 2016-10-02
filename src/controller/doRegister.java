@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,19 +13,19 @@ import model.Customer;
 import service.CustomerService;
 
 /**
- * Servlet implementation class doLogin
+ * Servlet implementation class doRegister
  */
-@WebServlet("/doLogin")
-public class doLogin extends HttpServlet {
+@WebServlet("/doRegister")
+public class doRegister extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public doLogin() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public doRegister() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,18 +33,21 @@ public class doLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
+		String name = request.getParameter("name");
+		String gender = request.getParameter("gender");
+		String email = request.getParameter("email");
 		
 		CustomerService service = (CustomerService) CustomerService.getInstance();
-		Customer customer = service.login(id, password);		
+		Customer customer = service.register(id, password, name, gender, email);
+		service.addCustomer(customer);
 		
 		String page;
 		
 		if(customer == null) {
-			page = "/view/loginFail.jsp";
-			request.setAttribute("id", id);
+			page = "/view/error.jsp";
 		}
 		else {
-			page = "/view/loginSuccess.jsp";
+			page = "/view/registerSuccess.jsp";
 			request.setAttribute("customer", customer);
 		}
 		
