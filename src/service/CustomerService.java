@@ -30,21 +30,13 @@ public class CustomerService {
 			return null;
 	}
 
-	/*
-	 * public Customer login(String id, String password) { if (customers.get(id)
-	 * != null && findCustomer(id).getPassword().equals(password)) { return
-	 * findCustomer(id); } return null; }
-	 */
-
-	public Customer login(String id, String password) {
-		Customer customer = customers.get(id);
-
-		if (customer != null && password.equals(customer.getPassword()))
-			return customer;
-		else
-			return null;
+	public Customer login(String id, String password) { 
+		if (customers.get(id) != null && findCustomer(id).getPassword().equals(password)) { 
+			return findCustomer(id); 
+		} 
+		return null; 
 	}
-
+	
 	public Customer register(String id, String password, String name, String gender, String email) {
 		// TODO Auto-generated method stub
 		if (id != null && password != null && name != null && gender != null && email != null) {
